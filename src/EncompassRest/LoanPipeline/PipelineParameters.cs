@@ -36,7 +36,11 @@ namespace EncompassRest.LoanPipeline
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public IEnumerable<FieldSort>? SortOrder { get; }
 
-        public bool IncludeArchivedLoans { get; }
+        /// <summary>
+        /// Include Archived Loans
+        /// </summary>
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public bool? IncludeArchivedLoans { get; }
 
         /// <summary>
         /// Pipeline parameters constructor.
@@ -45,7 +49,7 @@ namespace EncompassRest.LoanPipeline
         /// <param name="fields">Canonical field names to include.</param>
         /// <param name="sortOrder">Specifies how the results should be ordered.</param>
         /// <param name="includeArchivedLoans"></param>
-        public PipelineParameters(Filter filter, IEnumerable<string>? fields = null, IEnumerable<FieldSort>? sortOrder = null, bool includeArchivedLoans = false)
+        public PipelineParameters(Filter filter, IEnumerable<string>? fields = null, IEnumerable<FieldSort>? sortOrder = null, bool? includeArchivedLoans = null)
         {
             Preconditions.NotNull(filter, nameof(filter));
 
@@ -62,7 +66,7 @@ namespace EncompassRest.LoanPipeline
         /// <param name="fields">Canonical field names to include.</param>
         /// <param name="sortOrder">Specifies how the results should be ordered.</param>
         /// <param name="includeArchivedLoans"></param>
-        public PipelineParameters(IEnumerable<string> loanGuids, IEnumerable<string>? fields = null, IEnumerable<FieldSort>? sortOrder = null, bool includeArchivedLoans = false)
+        public PipelineParameters(IEnumerable<string> loanGuids, IEnumerable<string>? fields = null, IEnumerable<FieldSort>? sortOrder = null, bool? includeArchivedLoans = null)
         {
             Preconditions.NotNullOrEmpty(loanGuids, nameof(loanGuids));
 
